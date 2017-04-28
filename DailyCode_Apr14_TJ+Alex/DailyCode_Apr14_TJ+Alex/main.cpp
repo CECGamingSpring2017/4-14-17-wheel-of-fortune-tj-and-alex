@@ -1,49 +1,45 @@
-#include <iostream>
-#include<stdio.h>
-#include <ctype.h>
+#include<iostream>
 using namespace std;
 
 int main() {
-
-	int tries = 7;
-	char letter;
+	char blank[8] = { '_','_','_','_','_','_','_','_'};
+	char word[8] = { 'c','r','e','a','t','i','o','n'};
+	char input;
 	bool guessed = false;
+	int guessCount = 7;
 
-	char word[14] = { 'd','i','s','c','o','m','b','o','b','u','l','a','t','e' };
-	char correct[14] = { '_','_','_','_','_','_','_','_','_','_','_','_','_','_' };
-	cout << "Welcome to our game of Hangman!  You have 7 wrong guesses." << endl; 
-	for (int i =  0; i < 14; i ++){
-			cout << " " << correct[i] << " ";
-			}
 	while (true) {
 		guessed = false;
-		cout << "guess a letter!" << endl;
-		cin >> letter;
-		for (int j = 0; j < 14; j++) {
-			if (word[j] == letter) {
-				correct[j] = letter;
-				cout << "That letter is in the word." << endl;
+		cout << "enter letter" << endl;
+		cin >> input;
+		for (int i = 0; i < 8; i++) {
+			if (word[i] == input) {
+				blank[i] = input;
+				cout << "you guessed a letter!" << endl;
 				guessed = true;
 				break;
 			}
-		}
-			if (guessed == false){
-				cout << "Sorry, That letter (" << letter << ") is not in the word." << endl;
-				tries--;
-			}
 
-			cout << "This is your word so far." << endl;
-			for (int i = 14; i < 14; i++)
-				cout << correct[i];
-			cout << "You still have " << tries << " tries left." << endl;
-			
-			if (tries == 0) {
-				cout << "You ran out of tries." << endl;
-				return 0;
-			}
+		}//end for
+		if (guessed == false) {
+			cout << "sorry, " << input << " is not in the word." << endl;
+			guessCount--;
 		}
 
+		cout << "here's your word so far" << endl << endl;
+		for (int i = 0; i < 8; i++) {
+			cout << blank[i];
+		}
+		cout << endl << endl;
+		cout << "you have " << guessCount << " guesses left." << endl;
+		if (blank == word)
+			cout << "You win!" << endl;
 
-	}
+
+	}//end while
 
 
+
+
+
+}//end main
